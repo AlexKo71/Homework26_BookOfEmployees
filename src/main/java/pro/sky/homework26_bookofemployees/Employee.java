@@ -1,5 +1,7 @@
 package pro.sky.homework26_bookofemployees;
 
+import java.util.Objects;
+
 public class Employee {
     private final String firstName;
     private final String lastName;
@@ -40,5 +42,18 @@ public class Employee {
 
     public String getFullName() {
         return fullName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return department == employee.department && salary == employee.salary && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(fullName, employee.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, department, salary, fullName);
     }
 }

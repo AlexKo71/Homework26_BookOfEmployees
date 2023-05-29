@@ -16,6 +16,14 @@ public class DepartmentService {
         this.employees = employees;
     }
 
+    public int sumSalary(int number) {
+        return employees.getEmployees().stream()
+                .filter(d -> d.getDepartment() == number)
+                .mapToInt(Employee::getSalary)
+                .sum();
+    }
+
+
     public Employee maxSalary(int number) {
         return employees.getEmployees().stream()
                 .filter(d -> d.getDepartment() == number)
