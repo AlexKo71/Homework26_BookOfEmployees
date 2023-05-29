@@ -12,15 +12,15 @@ public class EmployeeService {
 
     public Employee addPersons(String firstName, String lastName,int department, int salary) {
         String key = firstName + " " + lastName;
-        var data = new Employee(firstName, lastName, department, salary);
         if (employees.size() > 10) {
             throw new EmployeeStorageIsFullException("коллекция переполнена");
         }
         if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
-        employees.put(key, data);
-        return (Employee) employees;
+        var employee = new Employee(firstName, lastName, department, salary);
+        employees.put(key, employee);
+        return employee;
     }
 
     public Employee removePersons(String firstName, String lastName) {
